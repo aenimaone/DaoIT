@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Dao IT Sites Creation</title>
+<link rel="stylesheet" href="countdown/jquery.countdown.css" />
+<link rel="stylesheet" href="css/style.css" />
+<!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<script src="js/rainyday.js"></script>
+<script src="js/jquery.lettering.js"></script>
+<script src="js/zoomTxt.js"></script>
+<script src="js/cloudss.js"></script>
+
+<script>
+function timeff(){
+		var cloud = document.getElementById('clouds');
+		cloud.style.left = 0+'px';
+
+	var timer = setInterval(function() { 
+		
+		cloud.style.left = parseInt(cloud.style.left) + 100 + "px";
+	}, 100);
+	
+
+	
+};
+</script>
+
+<script>
+  	$(document).ready(function() {
+		$(".phone , .mail, .separator").lettering(); 
+		$(".phone , .mail, .separator").zoomTxt();
+		
+	});
+</script>
+
+<script>
+          function run() {
+				var engine = new RainyDay({
+					element: 'background',
+					blur: 10,
+					opacity: 1,
+					fps: 30
+				});
+				engine.rain([ [1, 2, 000] ]);
+				engine.rain([ [3, 3, 0.88], [5, 5, 0.9], [3, 2, 1] ], 100);
+			}
+</script>
+
+
+</head>
+<body onload="time();">
+<!--<img src="img/bg.jpg" style="position:absolute; left:0; top:0;" width="1265" height="800" id="background">-->
+
+<div id="texture" style="position:absolute; left:0; top:0;  z-index:3;" >
+<div id="clouds"></div>
+<div id="wrapper">
+<div id="space"></div>
+	<header>
+    	<div id="logo">
+        	<a href="#" alt="На главную"><img src="img/logo.png"></a>
+        </div>
+    </header>
+
+	<h1>Just dao it</h1>
+    <p style="font-size: 14px;">И тут появился Свет и пришли идеии!<br>
+Наша команда готова создать для Вас от простого сайта до мегапортала, от визитки до экслюзивного дизайна! Мы можем продвинуть ваш сайт в яндексе или google или же вашу группу в вк или
+фейсбуке! Наша компания обслуживает как отдельные сайты, так и целые организации и мы готовы выслушать Ваши предложения о сотрудничестве, ведь каждый клиент и его проект - уникальны.</p>
+    <!--<div id="countdown"></div>-->
+	
+
+	<footer>
+    	<span class="phone">8 (919) 999-40-82</span>
+        <span class="separator">|</span>
+        <span ><a class="mail" href="mailto:info@daoit.ru" >info@daoit.ru</a></span>
+    </footer>
+    
+</div>
+
+</div> 
+
+<script src="countdown/jquery.countdown.js"></script>
+<script src="js/countdown.js"></script>
+<script>
+	(function() {
+		var lastTime = 0;
+		var vendors = ['ms', 'moz', 'webkit', 'o'];
+		for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+			window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+			window.cancelRequestAnimationFrame = window[vendors[x]+
+			  'CancelRequestAnimationFrame'];
+		}
+
+		if (!window.requestAnimationFrame)
+			window.requestAnimationFrame = function(callback, element) {
+				var currTime = new Date().getTime();
+				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+				var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+				  timeToCall);
+				lastTime = currTime + timeToCall;
+				return id;
+			};
+
+		if (!window.cancelAnimationFrame)
+			window.cancelAnimationFrame = function(id) {
+				clearTimeout(id);
+			};
+	}())
+
+
+	var world = document.getElementById('clouds'),		// сцена
+		arrClouds = [],
+		arrCloudLayers = [],
+		skyWidth = world.offsetWidth,
+		skyHeight = world.offsetHeight;
+	
+	
+function init(){
+	
+	/* к-во облаков и их расположение подбираем в зависимости от сцены */
+	arrClouds.push( createCloud({ 
+		posX: -200,
+		posY: 330,
+		posZ: 0,
+		speed: .1,
+		layersN: 5,
+		texture: 'cloud-3.png',
+		textureSizeX: 256,
+		textureSizeY: 256
+		})
+			);
+			
+	arrClouds.push( createCloud({ 
+		posX: 300,
+		posY: 220,
+		posZ: 0,
+		speed: .2,
+		layersN: 5,
+		texture: 'cloud-3.png',
+		textureSizeX: 256,
+		textureSizeY: 256
+		})
+			);
+			
+	arrClouds.push( createCloud({ 
+		posX: 800,
+		posY: 220,
+		posZ: 0,
+		speed: .1,
+		layersN: 5,
+		texture: 'cloud-3.png',
+		textureSizeX: 256,
+		textureSizeY: 256
+		})
+			);
+			
+	arrClouds.push( createCloud({ 
+		posX: 1300,
+		posY: 100,
+		posZ: 0,
+		speed: .2,
+		layersN: 5,
+		texture: 'cloud-3.png',
+		textureSizeX: 256,
+		textureSizeY: 256
+		})
+			);
+			
+	animate(); // запускаем анимацию
+	
+}
+
+/*
+	создание облака
+	posX, posY, posZ 	- координаты положения центра облака
+	speed 				- скорость перемещения px/sec
+	layersN 			- к-во слоев в облаке
+	texture				- путь к текстуре
+	textureSizeX/Y		- размеры текстуры	
+*/
+function createCloud(params)
+{
+	 var cloud = document.createElement( 'div');
+	 
+	 cloud.className = 'cloud';
+	 
+	/* сохраняем позицию облака	*/
+	cloud.data = {
+		posX: params.posX,
+		posY: params.posY,
+		posZ: params.posZ,
+		speed: params.speed
+	}
+	
+	world.appendChild( cloud );
+	
+	var cloudT = 'translateX( ' + cloud.data.posX + 'px ) translateY( ' + cloud.data.posY + 'px ) translateZ( ' + cloud.data.posZ + 'px )';
+	cloud.style.webkitTransform = cloudT;
+	cloud.style.MozTransform = cloudT;
+	
+	/* формируем слои облака */
+	for( var i = 0; i < params.layersN; i++ ) {
+		
+		cloudLayer = document.createElement( 'img' );
+			
+		cloudLayer.setAttribute( 'src', params.texture );
+		cloudLayer.className = 'cloudLayer';
+		
+		cloudLayer.data = {
+			cloudLayerX: params.textureSizeX - ( Math.random() * params.textureSizeX *2),			// координата X (кучность облака по оси X. чем больше значение, тем кунчость меньше)
+			cloudLayerY: params.textureSizeY - ( Math.random() * params.textureSizeY  ),		// координата Y (кучность по Y)
+			cloudLayerZ: 100 - ( Math.random() * 200 ),											// координата Z
+			cloudLayerA: Math.random() * 360,													// начальный угол повоторота
+			cloudLayerAV: ( Math.random() > 0.5 ) ? -0.1*params.speed: 0.1*params.speed,	// направление и скорость вращения
+			cloudLayerS: .9 + Math.random()														// масштаб
+		}
+		
+		var t = 'translateX( ' + cloudLayer.data.cloudLayerX + 'px ) translateY( ' + cloudLayer.data.cloudLayerY + 'px ) translateZ( ' + cloudLayer.data.cloudLayerZ + 'px ) rotateZ( ' + cloudLayer.data.cloudLayerA + 'deg ) scale( ' + cloudLayer.data.cloudLayerS + ' )';
+		cloudLayer.style.webkitTransform = t;
+		cloudLayer.style.MozTransform = t;
+		
+		cloud.appendChild( cloudLayer );
+		arrCloudLayers.push( cloudLayer );
+		
+	}
+	
+	return cloud;
+
+}
+
+function animate() {
+	requestAnimationFrame( animate );
+	
+	// перемещение облака
+	for (  var j = arrClouds.length; j--;)
+	{
+		var cloud = arrClouds[j];
+			
+		if( cloud.data.posX > skyWidth+300 ) cloud.data.posX = -300;
+		
+		cloud.data.posX += cloud.data.speed;
+
+		var cloudT = 'translateX('+ cloud.data.posX +'px )';
+		cloud.style.webkitTransform = cloudT;
+		cloud.style.MozTransform = cloudT;
+	}
+	
+	// обработка слоев облака
+	for( var j = arrCloudLayers.length; j--; ) {
+		var layer = arrCloudLayers[ j ];
+
+		layer.data.cloudLayerA += layer.data.cloudLayerAV; // Z- поворот
+			
+		var t = 'translateX( ' + layer.data.cloudLayerX + 'px ) translateY( ' + layer.data.cloudLayerY + 'px ) translateZ( ' + layer.data.cloudLayerZ + 'px ) rotateZ( ' + layer.data.cloudLayerA + 'deg )';
+		layer.style.webkitTransform = t;
+		layer.style.MozTransform = t;
+			
+		}
+	
+}
+
+init();
+	
+</script>
+
+</body>
+
+
+    
+    
+</html>
